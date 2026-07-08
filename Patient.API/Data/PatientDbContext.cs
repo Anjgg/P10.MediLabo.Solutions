@@ -27,5 +27,15 @@ namespace Patient.API.Data
                 entity.Property(p => p.Adresse).HasMaxLength(200);
                 entity.Property(p => p.Telephone).HasMaxLength(20);
             });
+
+
+            modelBuilder.Entity<Models.Patient>().HasData(
+                    new Models.Patient { Id = 1, Nom = "TestNone", Prenom = "Test", DateNaissance = new DateOnly(1966, 12, 31), Genre = Models.Genre.F, Adresse = "1 Brookside St", Telephone = "100-222-3333" },
+                    new Models.Patient { Id = 2, Nom = "TestBorderline", Prenom = "Test", DateNaissance = new DateOnly(1945, 6, 24), Genre = Models.Genre.M, Adresse = "2 High St", Telephone = "200-333-4444" },
+                    new Models.Patient { Id = 3, Nom = "TestInDanger", Prenom = "Test", DateNaissance = new DateOnly(2004, 6, 18), Genre = Models.Genre.M, Adresse = "3 Club Road", Telephone = "300-444-5555" },
+                    new Models.Patient { Id = 4, Nom = "TestEarlyOnse", Prenom = "Test", DateNaissance = new DateOnly(2002, 06, 28), Genre = Models.Genre.F, Adresse = "4 Valley Dr", Telephone = "400-555-6666" });
+
+
         }
+    }
 }

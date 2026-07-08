@@ -15,7 +15,7 @@ namespace Patient.API.Models
         public string Prenom { get; set; } = string.Empty;
 
         [Required]
-        public DateTime DateNaissance { get; set; }
+        public DateOnly DateNaissance { get; set; }
 
         [Required]
         public Genre Genre { get; set; }
