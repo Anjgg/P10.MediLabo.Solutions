@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Mls.Patient.Api.DTOs;
 using Mls.Patient.Api.Services;
 
@@ -6,6 +7,7 @@ namespace Mls.Patient.Api.Controllers
 {
     [ApiController]
     [Route("api/patients")]
+    [Authorize]
     public class PatientController : ControllerBase
     {
         private readonly IPatientService _service;
