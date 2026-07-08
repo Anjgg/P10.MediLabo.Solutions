@@ -38,9 +38,9 @@ namespace Mls.Patient.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreatePatient([FromBody] PatientDto patientDto)
         {
-            var id = await _service.CreatePatientAsync(patientDto);
+            var createdPatient = await _service.CreatePatientAsync(patientDto);
 
-            return CreatedAtAction(nameof(GetPatient), id);
+            return CreatedAtAction(nameof(GetPatient), new { id = createdPatient.Id }, createdPatient);
         }
 
         [HttpPut("{id}")]
