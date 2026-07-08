@@ -1,7 +1,8 @@
-﻿using Mls.Patient.API.DTOs;
+﻿using Mls.Patient.Api.DTOs;
 using Mls.Library.Repositories;
+using Mls.Patient.Api.Models;
 
-namespace Mls.Patient.API.Services
+namespace Mls.Patient.Api.Services
 {
     public interface IPatientService
     {
@@ -32,10 +33,10 @@ namespace Mls.Patient.API.Services
 
             if (patient == null)
             {
-                throw new 
+                throw new KeyNotFoundException($"Patient with ID {id} not found.");
             }
 
-            return patient is null ? null : ToDto(patient);
+            return ToDto(patient);
         }
 
         public async Task<PatientDto> CreatePatientAsync(PatientDto dto)
@@ -60,7 +61,7 @@ namespace Mls.Patient.API.Services
         {
             if (!await _repository.ExistsAsync(id))
             {
-                return false;
+                throw new KeyNotFoundException($"Patient with ID {id} not found.");
             }
 
             var patient = new Models.Patient

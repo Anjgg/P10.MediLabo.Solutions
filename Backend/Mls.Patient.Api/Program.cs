@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Mls.Patient.API.Data;
+using Mls.Patient.Api.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

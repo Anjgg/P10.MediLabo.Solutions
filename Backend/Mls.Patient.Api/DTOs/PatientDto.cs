@@ -1,7 +1,7 @@
-﻿using Patient.API.Models;
+﻿using Mls.Patient.Api.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace Mls.Patient.API.DTOs
+namespace Mls.Patient.Api.DTOs
 {
     public class PatientDto
     {

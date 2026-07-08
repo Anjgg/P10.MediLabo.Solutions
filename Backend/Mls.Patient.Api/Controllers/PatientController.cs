@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Patient.API.DTOs;
-using Patient.API.Services;
+using Mls.Patient.Api.DTOs;
+using Mls.Patient.Api.Services;
 
-namespace Mls.Patient.API.Controllers
+namespace Mls.Patient.Api.Controllers
 {
     [ApiController]
     [Route("api/patients")]

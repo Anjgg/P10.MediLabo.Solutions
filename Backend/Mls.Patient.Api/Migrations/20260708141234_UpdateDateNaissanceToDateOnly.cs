@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Mls.Patient.API.Migrations
+namespace Mls.Patient.Api.Migrations
 {
     /// <inheritdoc />
     public partial class UpdateDateNaissanceToDateOnly : Migration

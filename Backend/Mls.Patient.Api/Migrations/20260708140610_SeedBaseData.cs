@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace Mls.Patient.API.Migrations
+namespace Mls.Patient.Api.Migrations
 {
     /// <inheritdoc />
     public partial class SeedBaseData : Migration

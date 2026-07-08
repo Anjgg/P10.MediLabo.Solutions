@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Patient.API.Data;
+using Mls.Patient.Api.Data;
 
 #nullable disable
 
-namespace Mls.Patient.API.Migrations
+namespace Mls.Patient.Api.Migrations
 {
     [DbContext(typeof(PatientDbContext))]
     partial class PatientDbContextModelSnapshot : ModelSnapshot
