@@ -30,7 +30,11 @@
 
     <div class="form-group mb-3">
         <label asp-for="Genre" class="control-label"></label>
-        <select asp-for="Genre" class="form-control" asp-items="Html.GetEnumSelectList<Frontend.Models.Genre>()"></select>
+        <select asp-for="Genre" class="form-control">
+            <option value="">-- Sélectionner --</option>
+            <option value="M">Homme</option>
+            <option value="F">Femme</option>
+        </select>
         <span asp-validation-for="Genre" class="text-danger"></span>
     </div>
 

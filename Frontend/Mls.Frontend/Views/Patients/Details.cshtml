@@ -8,7 +8,7 @@
 
 <dl class="row">
     <dt class="col-sm-3">Date de naissance</dt>
-    <dd class="col-sm-9">@Model.DateNaissance.ToString("dd/MM/yyyy")</dd>
+    <dd class="col-sm-9">@Model.DateNaissance?.ToString("dd/MM/yyyy")</dd>
 
     <dt class="col-sm-3">Genre</dt>
     <dd class="col-sm-9">@Model.Genre</dd>

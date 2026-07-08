@@ -19,11 +19,11 @@ namespace Frontend.Models
         [Required(ErrorMessage = "La date de naissance est requise.")]
         [DataType(DataType.Date)]
         [Display(Name = "Date de naissance")]
-        public DateOnly DateNaissance { get; set; }
+        public DateOnly? DateNaissance { get; set; }
 
         [Required(ErrorMessage = "Le genre est requis.")]
         [Display(Name = "Genre")]
-        public Genre Genre { get; set; }
+        public Genre? Genre { get; set; }
 
         [MaxLength(200)]
         [Display(Name = "Adresse")]
