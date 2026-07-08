@@ -1,4 +1,5 @@
-﻿using Mls.Patient.Api.DTOs;
+﻿using Microsoft.EntityFrameworkCore;
+using Mls.Patient.Api.DTOs;
 using Mls.Library.Repositories;
 using Mls.Patient.Api.Models;
 
@@ -59,11 +60,6 @@ namespace Mls.Patient.Api.Services
 
         public async Task<bool> UpdatePatientAsync(int id, PatientDto dto)
         {
-            if (!await _repository.ExistsAsync(id))
-            {
-                throw new KeyNotFoundException($"Patient with ID {id} not found.");
-            }
-
             var patient = new Models.Patient
             {
                 Id = id,
@@ -76,7 +72,15 @@ namespace Mls.Patient.Api.Services
             };
 
             _repository.Update(patient);
-            await _repository.SaveChangesAsync();
+
+            try
+            {
+                await _repository.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                return false;
+            }
 
             return true;
         }

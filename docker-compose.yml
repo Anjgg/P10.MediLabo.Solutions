@@ -1,0 +1,59 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "MyStrong!Passw0rd"
+    ports:
+      - "1433:1433"
+    networks:
+      - medilabo-network
+
+  patient-api:
+    build:
+      context: .
+      dockerfile: Backend/Mls.Patient.Api/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Docker
+      ConnectionStrings__PatientDb: "Server=sqlserver;Database=PatientDb;User Id=sa;Password=MyStrong!Passw0rd;TrustServerCertificate=True"
+    depends_on:
+      - sqlserver
+    ports:
+      - "5046:8080"
+    networks:
+      - medilabo-network
+
+  gateway:
+    build:
+      context: .
+      dockerfile: Gateway/Mls.Gateway/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Docker
+      Routes__0__DownstreamHostAndPorts__0__Host: patient-api
+      Routes__0__DownstreamHostAndPorts__0__Port: "8080"
+      Routes__1__DownstreamHostAndPorts__0__Host: patient-api
+      Routes__1__DownstreamHostAndPorts__0__Port: "8080"
+    depends_on:
+      - patient-api
+    ports:
+      - "5141:8080"
+    networks:
+      - medilabo-network
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Frontend/Mls.Frontend/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Docker
+      ApiSettings__GatewayBaseUrl: "http://gateway:8080/"
+    depends_on:
+      - gateway
+    ports:
+      - "5000:8080"
+    networks:
+      - medilabo-network
+
+networks:
+  medilabo-network:
+    driver: bridge
