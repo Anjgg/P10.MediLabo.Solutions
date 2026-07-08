@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Patient.API.Data
+namespace Mls.Patient.API.Data
 {
     public class PatientDbContext : DbContext
     {

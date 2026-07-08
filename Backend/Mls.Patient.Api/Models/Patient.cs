@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Patient.API.Models
+namespace Mls.Patient.API.Models
 {
     public class Patient
     {

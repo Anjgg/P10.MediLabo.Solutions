@@ -1,20 +1,21 @@
-﻿using Patient.API.DTOs;
+﻿using Mls.Patient.API.DTOs;
+using Mls.Library.Repositories;
 
-namespace Patient.API.Services
+namespace Mls.Patient.API.Services
 {
     public interface IPatientService
     {
         Task<IEnumerable<PatientDto>> GetAllPatientsAsync();
         Task<PatientDto?> GetPatientByIdAsync(int id);
-        Task<PatientDto> CreatePatientAsync(PatientCreateDto dto);
-        Task<bool> UpdatePatientAsync(int id, PatientUpdateDto dto);
+        Task<PatientDto> CreatePatientAsync(PatientDto dto);
+        Task<bool> UpdatePatientAsync(int id, PatientDto dto);
     }
 
-    public class PatientService
+    public class PatientService : IPatientService
     {
-        private readonly IPatientRepository _repository;
+        private readonly IRepository<Models.Patient> _repository;
 
-        public PatientService(IPatientRepository repository)
+        public PatientService(IRepository<Models.Patient> repository)
         {
             _repository = repository;
         }
@@ -28,10 +29,16 @@ namespace Patient.API.Services
         public async Task<PatientDto?> GetPatientByIdAsync(int id)
         {
             var patient = await _repository.GetByIdAsync(id);
+
+            if (patient == null)
+            {
+                throw new 
+            }
+
             return patient is null ? null : ToDto(patient);
         }
 
-        public async Task<PatientDto> CreatePatientAsync(PatientCreateDto dto)
+        public async Task<PatientDto> CreatePatientAsync(PatientDto dto)
         {
             var patient = new Models.Patient
             {
@@ -49,7 +56,7 @@ namespace Patient.API.Services
             return ToDto(patient);
         }
 
-        public async Task<bool> UpdatePatientAsync(int id, PatientUpdateDto dto)
+        public async Task<bool> UpdatePatientAsync(int id, PatientDto dto)
         {
             if (!await _repository.ExistsAsync(id))
             {

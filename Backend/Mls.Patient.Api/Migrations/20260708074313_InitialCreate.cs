@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Patient.API.Migrations
+namespace Mls.Patient.API.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration

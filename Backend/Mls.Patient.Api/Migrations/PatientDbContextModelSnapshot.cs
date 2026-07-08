@@ -8,7 +8,7 @@ using Patient.API.Data;
 
 #nullable disable
 
-namespace Patient.API.Migrations
+namespace Mls.Patient.API.Migrations
 {
     [DbContext(typeof(PatientDbContext))]
     partial class PatientDbContextModelSnapshot : ModelSnapshot
