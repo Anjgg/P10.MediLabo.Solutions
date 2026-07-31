@@ -32,12 +32,7 @@ namespace Mls.Patient.Api.Services
         {
             var patient = await _repository.GetByIdAsync(id);
 
-            if (patient == null)
-            {
-                throw new KeyNotFoundException($"Patient with ID {id} not found.");
-            }
-
-            return ToDto(patient);
+            return patient == null ? null : ToDto(patient);
         }
 
         public async Task<PatientDto> CreatePatientAsync(PatientDto dto)
