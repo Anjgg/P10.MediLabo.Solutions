@@ -1,10 +1,10 @@
-using System.Linq.Expressions;
 using Mls.Library.Repositories;
 using Mls.Notes.Api.DTOs;
 using Mls.Notes.Api.Models;
 using Mls.Notes.Api.Services;
-using Moq;
 using MongoDB.Bson;
+using Moq;
+using System.Linq.Expressions;
 
 namespace Mls.Notes.Api.Tests.Services
 {

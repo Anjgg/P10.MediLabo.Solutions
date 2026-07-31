@@ -1,5 +1,5 @@
-using System.ComponentModel.DataAnnotations;
 using MongoDB.Bson;
+using System.ComponentModel.DataAnnotations;
 
 namespace Mls.Notes.Api.Models
 {

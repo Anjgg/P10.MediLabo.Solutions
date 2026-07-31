@@ -5,7 +5,6 @@ using Mls.Library.Authentication;
 using Mls.Library.Repositories;
 using Mls.Notes.Api.Data;
 using Mls.Notes.Api.Services;
-using MongoDB.EntityFrameworkCore.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
