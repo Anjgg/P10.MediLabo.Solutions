@@ -26,7 +26,7 @@ namespace Mls.Notes.Api.Data
                 new Note { PatientId = 4, Contenu = "Le patient déclare qu'il lui est devenu difficile de monter les escaliers Il se plaint également d’être essoufflé Tests de laboratoire indiquant que les anticorps sont élevés Réaction aux médicaments", DateCreation = DateTime.UtcNow },
                 new Note { PatientId = 4, Contenu = "Le patient déclare qu'il a mal au dos lorsqu'il reste assis pendant longtemps", DateCreation = DateTime.UtcNow },
                 new Note { PatientId = 4, Contenu = " Le patient déclare avoir commencé à fumer depuis peu Hémoglobine A1C supérieure au niveau recommandé", DateCreation = DateTime.UtcNow },
-                new Note { PatientId = 4, Contenu = "Taille, Poids, Cholestérol, Vertige et Réaction", DateCreation = DateTime.UtcNow },
+                new Note { PatientId = 4, Contenu = "Taille, Poids, Cholestérol, Vertige et Réaction", DateCreation = DateTime.UtcNow }
             );
 
             dbContext.SaveChanges();

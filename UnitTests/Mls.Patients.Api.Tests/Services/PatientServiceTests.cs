@@ -33,7 +33,7 @@ namespace Mls.Patients.Api.Tests.Services
 
             var result = (await _service.GetAllPatientsAsync()).ToList();
 
-            Assert.AreEqual(2, result.Count);
+            Assert.HasCount(2, result);
             Assert.AreEqual("Doe", result[0].Nom);
             Assert.AreEqual("Smith", result[1].Nom);
         }

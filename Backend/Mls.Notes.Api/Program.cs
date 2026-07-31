@@ -16,7 +16,7 @@ builder.Services.AddAuthentication("BasicAuthentication")
 builder.Services.AddAuthorization();
 
 builder.Services.AddDbContext<NoteDbContext>(options =>
-    options.UseMongoDB(builder.Configuration.GetConnectionString("NotesDb"), "NotesDb"));
+    options.UseMongoDB(builder.Configuration.GetConnectionString("NotesDb")!, "NotesDb"));
 
 builder.Services.AddScoped<INoteService, NoteService>();
 
