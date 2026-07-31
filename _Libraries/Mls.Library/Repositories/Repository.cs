@@ -1,18 +1,20 @@
-﻿using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 
 namespace Mls.Library.Repositories
 {
-    public interface IRepository<T> where T : class
+    public interface IRepository<T, TKey> where T : class
     {
         Task<IEnumerable<T>> GetAllAsync();
-        Task<T?> GetByIdAsync(int id);
+        Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate);
+        Task<T?> GetByIdAsync(TKey id);
         Task AddAsync(T entity);
         void Update(T entity);
-        Task<bool> ExistsAsync(int id);
+        Task<bool> ExistsAsync(TKey id);
         Task SaveChangesAsync();
     }
 
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class Repository<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : class
     {
         private readonly DbContext _dbContext;
         private readonly DbSet<TEntity> _dbSet;
@@ -26,7 +28,12 @@ namespace Mls.Library.Repositories
             return await _dbSet.ToListAsync();
         }
 
-        public async Task<TEntity?> GetByIdAsync(int id)
+        public async Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            return await _dbSet.Where(predicate).ToListAsync();
+        }
+
+        public async Task<TEntity?> GetByIdAsync(TKey id)
         {
             return await _dbSet.FindAsync(id);
         }
@@ -41,7 +48,7 @@ namespace Mls.Library.Repositories
             _dbContext.Entry(entity).State = EntityState.Modified;
         }
 
-        public async Task<bool> ExistsAsync(int id)
+        public async Task<bool> ExistsAsync(TKey id)
         {
             return await _dbSet.FindAsync(id) != null;
         }
@@ -51,4 +58,4 @@ namespace Mls.Library.Repositories
             await _dbContext.SaveChangesAsync();
         }
     }
-}   
+}

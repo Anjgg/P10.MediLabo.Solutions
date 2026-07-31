@@ -1,5 +1,4 @@
-using Microsoft.EntityFrameworkCore;
-using Mls.Notes.Api.Data;
+using Mls.Library.Repositories;
 using Mls.Notes.Api.DTOs;
 using Mls.Notes.Api.Models;
 using MongoDB.Bson;
@@ -15,21 +14,20 @@ namespace Mls.Notes.Api.Services
 
     public class NoteService : INoteService
     {
-        private readonly NoteDbContext _dbContext;
+        private readonly IRepository<Note, ObjectId> _repository;
 
-        public NoteService(NoteDbContext dbContext)
+        public NoteService(IRepository<Note, ObjectId> repository)
         {
-            _dbContext = dbContext;
+            _repository = repository;
         }
 
         public async Task<IEnumerable<NoteDto>> GetNotesByPatientIdAsync(int patientId)
         {
-            var notes = await _dbContext.Notes
-                .Where(n => n.PatientId == patientId)
-                .OrderByDescending(n => n.DateCreation)
-                .ToListAsync();
+            var notes = await _repository.FindAsync(n => n.PatientId == patientId);
 
-            return notes.Select(ToDto);
+            return notes
+                .OrderByDescending(n => n.DateCreation)
+                .Select(ToDto);
         }
 
         public async Task<NoteDto?> GetNoteByIdAsync(string id)
@@ -39,7 +37,7 @@ namespace Mls.Notes.Api.Services
                 return null;
             }
 
-            var note = await _dbContext.Notes.FirstOrDefaultAsync(n => n.Id == objectId);
+            var note = await _repository.GetByIdAsync(objectId);
 
             return note is null ? null : ToDto(note);
         }
@@ -53,8 +51,8 @@ namespace Mls.Notes.Api.Services
                 DateCreation = DateTime.UtcNow
             };
 
-            await _dbContext.Notes.AddAsync(note);
-            await _dbContext.SaveChangesAsync();
+            await _repository.AddAsync(note);
+            await _repository.SaveChangesAsync();
 
             return ToDto(note);
         }

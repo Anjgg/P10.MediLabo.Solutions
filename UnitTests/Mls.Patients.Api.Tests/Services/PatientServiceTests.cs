@@ -10,13 +10,13 @@ namespace Mls.Patients.Api.Tests.Services
     [TestClass]
     public class PatientServiceTests
     {
-        private Mock<IRepository<Patient>> _repositoryMock = null!;
+        private Mock<IRepository<Patient, int>> _repositoryMock = null!;
         private PatientService _service = null!;
 
         [TestInitialize]
         public void Setup()
         {
-            _repositoryMock = new Mock<IRepository<Patient>>();
+            _repositoryMock = new Mock<IRepository<Patient, int>>();
             _service = new PatientService(_repositoryMock.Object);
         }
 

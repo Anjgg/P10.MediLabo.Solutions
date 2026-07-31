@@ -22,7 +22,7 @@ builder.Services.AddDbContext<PatientDbContext>(options =>
         sqlOptions => sqlOptions.EnableRetryOnFailure()));
 
 builder.Services.AddScoped<DbContext>(sp => sp.GetRequiredService<PatientDbContext>());
-builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
 builder.Services.AddScoped<IPatientService, PatientService>();
 
 builder.Services.AddEndpointsApiExplorer();

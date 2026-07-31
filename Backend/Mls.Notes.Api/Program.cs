@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi;
 using Mls.Library.Authentication;
+using Mls.Library.Repositories;
 using Mls.Notes.Api.Data;
 using Mls.Notes.Api.Services;
 using MongoDB.EntityFrameworkCore.Extensions;
@@ -18,6 +19,8 @@ builder.Services.AddAuthorization();
 builder.Services.AddDbContext<NoteDbContext>(options =>
     options.UseMongoDB(builder.Configuration.GetConnectionString("NotesDb")!, "NotesDb"));
 
+builder.Services.AddScoped<DbContext>(sp => sp.GetRequiredService<NoteDbContext>());
+builder.Services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
 builder.Services.AddScoped<INoteService, NoteService>();
 
 builder.Services.AddEndpointsApiExplorer();
