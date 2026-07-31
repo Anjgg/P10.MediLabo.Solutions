@@ -91,7 +91,7 @@ namespace Mls.Patients.Api.Tests.Controllers
         }
 
         [TestMethod]
-        public async Task UpdatePatient_UnknownPatient_ReturnsBadRequest()
+        public async Task UpdatePatient_UnknownPatient_ReturnsNotFound()
         {
             var dto = new PatientDto { Nom = "Doe", Prenom = "John", DateNaissance = new DateOnly(1990, 1, 1), Genre = Genre.M };
 
@@ -99,7 +99,7 @@ namespace Mls.Patients.Api.Tests.Controllers
 
             var result = await _controller.UpdatePatient(999, dto);
 
-            Assert.IsInstanceOfType(result, typeof(BadRequestResult));
+            Assert.IsInstanceOfType(result, typeof(NotFoundResult));
         }
     }
 }
