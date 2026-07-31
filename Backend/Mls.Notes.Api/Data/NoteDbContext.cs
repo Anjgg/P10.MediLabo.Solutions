@@ -9,6 +9,7 @@ namespace Mls.Notes.Api.Data
         public NoteDbContext(DbContextOptions<NoteDbContext> options)
             : base(options)
         {
+            Database.AutoTransactionBehavior = AutoTransactionBehavior.Never;
         }
 
         public DbSet<Note> Notes => Set<Note>();
