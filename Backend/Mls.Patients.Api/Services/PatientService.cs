@@ -15,9 +15,9 @@ namespace Mls.Patients.Api.Services
 
     public class PatientService : IPatientService
     {
-        private readonly IRepository<Patient> _repository;
+        private readonly IRepository<Patient, int> _repository;
 
-        public PatientService(IRepository<Patient> repository)
+        public PatientService(IRepository<Patient, int> repository)
         {
             _repository = repository;
         }

@@ -1,24 +1,57 @@
-@model Frontend.Models.PatientViewModel
+@model Frontend.Models.PatientDetailsViewModel
 
 @{
     ViewData["Title"] = "Détail du patient";
 }
 
-<h1>@Model.Prenom @Model.Nom</h1>
+<h1>@Model.Patient.Prenom @Model.Patient.Nom</h1>
 
 <dl class="row">
     <dt class="col-sm-3">Date de naissance</dt>
-    <dd class="col-sm-9">@Model.DateNaissance?.ToString("dd/MM/yyyy")</dd>
+    <dd class="col-sm-9">@Model.Patient.DateNaissance?.ToString("dd/MM/yyyy")</dd>
 
     <dt class="col-sm-3">Genre</dt>
-    <dd class="col-sm-9">@Model.Genre</dd>
+    <dd class="col-sm-9">@Model.Patient.Genre</dd>
 
     <dt class="col-sm-3">Adresse</dt>
-    <dd class="col-sm-9">@(Model.Adresse ?? "-")</dd>
+    <dd class="col-sm-9">@(Model.Patient.Adresse ?? "-")</dd>
 
     <dt class="col-sm-3">Téléphone</dt>
-    <dd class="col-sm-9">@(Model.Telephone ?? "-")</dd>
+    <dd class="col-sm-9">@(Model.Patient.Telephone ?? "-")</dd>
 </dl>
 
-<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Modifier</a>
+<a asp-action="Edit" asp-route-id="@Model.Patient.Id" class="btn btn-primary">Modifier</a>
 <a asp-action="Index" class="btn btn-secondary">Retour à la liste</a>
+
+<hr />
+
+<h2>Historique des notes</h2>
+
+@if (!Model.Notes.Any())
+{
+    <p class="text-muted">Aucune note pour ce patient.</p>
+}
+else
+{
+    <div class="notes-list">
+        @foreach (var note in Model.Notes.OrderByDescending(n => n.DateCreation))
+        {
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">@note.DateCreation.ToLocalTime().ToString("dd/MM/yyyy HH:mm")</h6>
+                    <p class="card-text" style="white-space: pre-wrap;">@note.Contenu</p>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+<h3>Ajouter une note</h3>
+
+<form asp-action="AddNote" method="post">
+    <input type="hidden" name="id" value="@Model.Patient.Id" />
+    <div class="mb-3">
+        <textarea name="nouvelleNote" class="form-control" rows="5" placeholder="Saisir une note pour la visite en cours..."></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Ajouter la note</button>
+</form>

@@ -10,13 +10,13 @@ namespace Mls.Patients.Api.Tests.Services
     [TestClass]
     public class PatientServiceTests
     {
-        private Mock<IRepository<Patient>> _repositoryMock = null!;
+        private Mock<IRepository<Patient, int>> _repositoryMock = null!;
         private PatientService _service = null!;
 
         [TestInitialize]
         public void Setup()
         {
-            _repositoryMock = new Mock<IRepository<Patient>>();
+            _repositoryMock = new Mock<IRepository<Patient, int>>();
             _service = new PatientService(_repositoryMock.Object);
         }
 
@@ -33,7 +33,7 @@ namespace Mls.Patients.Api.Tests.Services
 
             var result = (await _service.GetAllPatientsAsync()).ToList();
 
-            Assert.AreEqual(2, result.Count);
+            Assert.HasCount(2, result);
             Assert.AreEqual("Doe", result[0].Nom);
             Assert.AreEqual("Smith", result[1].Nom);
         }

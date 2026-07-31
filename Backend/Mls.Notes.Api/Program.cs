@@ -3,27 +3,24 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi;
 using Mls.Library.Authentication;
 using Mls.Library.Repositories;
-using Mls.Patients.Api.Data;
-using Mls.Patients.Api.Services;
-using System.Text.Json.Serialization;
+using Mls.Notes.Api.Data;
+using Mls.Notes.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers()
-    .AddJsonOptions(options =>
-        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+builder.Services.AddControllers();
 
 builder.Services.AddAuthentication("BasicAuthentication")
     .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
 
 builder.Services.AddAuthorization();
-builder.Services.AddDbContext<PatientDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("PatientDb"),
-        sqlOptions => sqlOptions.EnableRetryOnFailure()));
 
-builder.Services.AddScoped<DbContext>(sp => sp.GetRequiredService<PatientDbContext>());
+builder.Services.AddDbContext<NoteDbContext>(options =>
+    options.UseMongoDB(builder.Configuration.GetConnectionString("NotesDb")!, "NotesDb"));
+
+builder.Services.AddScoped<DbContext>(sp => sp.GetRequiredService<NoteDbContext>());
 builder.Services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
-builder.Services.AddScoped<IPatientService, PatientService>();
+builder.Services.AddScoped<INoteService, NoteService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
@@ -47,8 +44,8 @@ var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-    var dbContext = scope.ServiceProvider.GetRequiredService<PatientDbContext>();
-    dbContext.Database.Migrate();
+    var dbContext = scope.ServiceProvider.GetRequiredService<NoteDbContext>();
+    NoteSeeder.SeedIfEmpty(dbContext);
 }
 
 if (app.Environment.IsDevelopment())

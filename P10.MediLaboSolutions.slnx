@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/Backend/">
     <Project Path="Backend/Mls.Patients.Api/Mls.Patients.Api.csproj" Id="12ae7a77-5c06-4a7c-a380-8229c76f7b68" />
+    <Project Path="Backend/Mls.Notes.Api/Mls.Notes.Api.csproj" Id="f4a7e5c2-9b3d-4e6a-8c1f-2d5b7a9e3c60" />
   </Folder>
   <Folder Name="/Frontend/">
     <Project Path="Frontend/Mls.Frontend/Mls.Frontend.csproj" Id="3c98485d-62cd-4f41-9ac7-f3fa38aa27d4" />
@@ -10,6 +11,7 @@
   </Folder>
   <Folder Name="/UnitTests/">
     <Project Path="UnitTests/Mls.Patients.Api.Tests/Mls.Patients.Api.Tests.csproj" Id="0074bd36-c304-453e-b097-202c34aaeba9" />
+    <Project Path="UnitTests/Mls.Notes.Api.Tests/Mls.Notes.Api.Tests.csproj" Id="a2d8c5e1-6f4b-4a9d-8e2c-1b3f5a7d9c40" />
   </Folder>
   <Folder Name="/_build/">
     <File Path="_build/docker-compose.yml" />

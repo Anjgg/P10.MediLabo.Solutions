@@ -1,12 +1,14 @@
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Options;
 
-namespace Mls.Patients.Api.Authentication
+namespace Mls.Library.Authentication
 {
     public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>
     {
@@ -80,7 +82,7 @@ namespace Mls.Patients.Api.Authentication
 
         protected override Task HandleChallengeAsync(AuthenticationProperties properties)
         {
-            Response.Headers.Append("WWW-Authenticate", "Basic realm=\"Mls.Patients.Api\"");
+            Response.Headers.Append("WWW-Authenticate", "Basic realm=\"Mls.Api\"");
             return base.HandleChallengeAsync(properties);
         }
     }

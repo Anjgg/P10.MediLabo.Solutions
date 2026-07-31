@@ -7,10 +7,12 @@ namespace Frontend.Controllers
     public class PatientsController : Controller
     {
         private readonly IPatientApiClient _apiClient;
+        private readonly INotesApiClient _notesApiClient;
 
-        public PatientsController(IPatientApiClient apiClient)
+        public PatientsController(IPatientApiClient apiClient, INotesApiClient notesApiClient)
         {
             _apiClient = apiClient;
+            _notesApiClient = notesApiClient;
         }
 
         public async Task<IActionResult> Index()
@@ -28,7 +30,31 @@ namespace Frontend.Controllers
                 return NotFound();
             }
 
-            return View(patient);
+            var notes = await _notesApiClient.GetNotesByPatientAsync(id);
+
+            var viewModel = new PatientDetailsViewModel
+            {
+                Patient = patient,
+                Notes = notes
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddNote(int id, string nouvelleNote)
+        {
+            if (!string.IsNullOrWhiteSpace(nouvelleNote))
+            {
+                await _notesApiClient.CreateNoteAsync(new NoteViewModel
+                {
+                    PatientId = id,
+                    Contenu = nouvelleNote
+                });
+            }
+
+            return RedirectToAction(nameof(Details), new { id });
         }
 
         public IActionResult Create()
