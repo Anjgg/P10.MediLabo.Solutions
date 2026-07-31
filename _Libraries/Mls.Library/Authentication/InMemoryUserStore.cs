@@ -13,7 +13,10 @@ namespace Mls.Library.Authentication
             var frontend = new ApiUser { Username = "frontend" };
             frontend.PasswordHash = hasher.HashPassword(frontend, "P@ssw0rd2026!");
 
-            Users = new List<ApiUser> { frontend };
+            var assessment = new ApiUser { Username = "assessment" };
+            assessment.PasswordHash = hasher.HashPassword(assessment, "P@ssw0rd2026!");
+
+            Users = new List<ApiUser> { frontend, assessment };
         }
 
         public static ApiUser? FindByUsername(string username)

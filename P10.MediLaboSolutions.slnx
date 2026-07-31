@@ -2,6 +2,7 @@
   <Folder Name="/Backend/">
     <Project Path="Backend/Mls.Patients.Api/Mls.Patients.Api.csproj" Id="12ae7a77-5c06-4a7c-a380-8229c76f7b68" />
     <Project Path="Backend/Mls.Notes.Api/Mls.Notes.Api.csproj" Id="f4a7e5c2-9b3d-4e6a-8c1f-2d5b7a9e3c60" />
+    <Project Path="Backend/Mls.Assessment.Api/Mls.Assessment.Api.csproj" Id="c5dc11c7-386b-48bb-8dcf-bd0f1719bb3a" />
   </Folder>
   <Folder Name="/Frontend/">
     <Project Path="Frontend/Mls.Frontend/Mls.Frontend.csproj" Id="3c98485d-62cd-4f41-9ac7-f3fa38aa27d4" />
