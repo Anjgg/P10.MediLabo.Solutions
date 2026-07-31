@@ -1,0 +1,32 @@
+# Auto detect text files and normalize line endings to LF in the repository
+* text=auto eol=lf
+
+# Explicit text files
+*.cs text
+*.csproj text
+*.sln text
+*.slnx text
+*.json text
+*.cshtml text
+*.css text
+*.js text
+*.md text
+*.gitignore text
+*.gitattributes text
+Dockerfile text
+*.yml text
+*.yaml text
+
+# Windows-specific scripts should keep CRLF
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+
+# Binary files - do not touch
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.dll binary
+*.exe binary
+*.pdb binary
