@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 
-namespace Mls.Patient.Api.Authentication
+namespace Mls.Patients.Api.Authentication
 {
     public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>
     {
@@ -80,7 +80,7 @@ namespace Mls.Patient.Api.Authentication
 
         protected override Task HandleChallengeAsync(AuthenticationProperties properties)
         {
-            Response.Headers.Append("WWW-Authenticate", "Basic realm=\"Mls.Patient.Api\"");
+            Response.Headers.Append("WWW-Authenticate", "Basic realm=\"Mls.Patients.Api\"");
             return base.HandleChallengeAsync(properties);
         }
     }

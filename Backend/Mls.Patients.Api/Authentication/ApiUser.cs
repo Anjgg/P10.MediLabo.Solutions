@@ -1,4 +1,4 @@
-namespace Mls.Patient.Api.Authentication
+namespace Mls.Patients.Api.Authentication
 {
     public class ApiUser
     {

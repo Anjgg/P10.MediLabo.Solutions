@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Mls.Patient.Api.Data;
+using Mls.Patients.Api.Data;
 
 #nullable disable
 
-namespace Mls.Patient.Api.Migrations
+namespace Mls.Patients.Api.Migrations
 {
     [DbContext(typeof(PatientDbContext))]
     [Migration("20260708140610_SeedBaseData")]

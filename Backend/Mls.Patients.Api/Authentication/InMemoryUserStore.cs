@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 
-namespace Mls.Patient.Api.Authentication
+namespace Mls.Patients.Api.Authentication
 {
     public static class InMemoryUserStore
     {

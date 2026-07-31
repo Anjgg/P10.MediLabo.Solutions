@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Mls.Patient.Api.DTOs;
-using Mls.Patient.Api.Services;
+using Mls.Patients.Api.DTOs;
+using Mls.Patients.Api.Services;
 
-namespace Mls.Patient.Api.Controllers
+namespace Mls.Patients.Api.Controllers
 {
     [ApiController]
     [Route("api/patients")]

@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Backend\Mls.Patient.Api\Mls.Patient.Api.csproj" />
+    <ProjectReference Include="..\..\Backend\Mls.Patients.Api\Mls.Patients.Api.csproj" />
     <ProjectReference Include="..\..\_Libraries\Mls.Library\Mls.Library.csproj" />
   </ItemGroup>
 

@@ -2,9 +2,9 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi;
 using Mls.Library.Repositories;
-using Mls.Patient.Api.Authentication;
-using Mls.Patient.Api.Data;
-using Mls.Patient.Api.Services;
+using Mls.Patients.Api.Authentication;
+using Mls.Patients.Api.Data;
+using Mls.Patients.Api.Services;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);

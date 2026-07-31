@@ -1,29 +1,29 @@
 using Microsoft.EntityFrameworkCore;
 using Mls.Library.Repositories;
-using Mls.Patient.Api.DTOs;
-using Mls.Patient.Api.Models;
-using Mls.Patient.Api.Services;
+using Mls.Patients.Api.DTOs;
+using Mls.Patients.Api.Models;
+using Mls.Patients.Api.Services;
 using Moq;
 
-namespace Mls.Patient.Api.Tests.Services
+namespace Mls.Patients.Api.Tests.Services
 {
     [TestClass]
     public class PatientServiceTests
     {
-        private Mock<IRepository<Models.Patient>> _repositoryMock = null!;
+        private Mock<IRepository<Patient>> _repositoryMock = null!;
         private PatientService _service = null!;
 
         [TestInitialize]
         public void Setup()
         {
-            _repositoryMock = new Mock<IRepository<Models.Patient>>();
+            _repositoryMock = new Mock<IRepository<Patient>>();
             _service = new PatientService(_repositoryMock.Object);
         }
 
         [TestMethod]
         public async Task GetAllPatientsAsync_ReturnsAllPatientsMappedToDto()
         {
-            var patients = new List<Models.Patient>
+            var patients = new List<Patient>
             {
                 new() { Id = 1, Nom = "Doe", Prenom = "John", DateNaissance = new DateOnly(1990, 1, 1), Genre = Genre.M },
                 new() { Id = 2, Nom = "Smith", Prenom = "Jane", DateNaissance = new DateOnly(1985, 5, 20), Genre = Genre.F }
@@ -41,7 +41,7 @@ namespace Mls.Patient.Api.Tests.Services
         [TestMethod]
         public async Task GetPatientByIdAsync_ExistingId_ReturnsPatientDto()
         {
-            var patient = new Models.Patient { Id = 1, Nom = "Doe", Prenom = "John", DateNaissance = new DateOnly(1990, 1, 1), Genre = Genre.M };
+            var patient = new Patient { Id = 1, Nom = "Doe", Prenom = "John", DateNaissance = new DateOnly(1990, 1, 1), Genre = Genre.M };
 
             _repositoryMock.Setup(r => r.GetByIdAsync(1)).ReturnsAsync(patient);
 
@@ -54,7 +54,7 @@ namespace Mls.Patient.Api.Tests.Services
         [TestMethod]
         public async Task GetPatientByIdAsync_UnknownId_ReturnsNull()
         {
-            _repositoryMock.Setup(r => r.GetByIdAsync(It.IsAny<int>())).ReturnsAsync((Models.Patient?)null);
+            _repositoryMock.Setup(r => r.GetByIdAsync(It.IsAny<int>())).ReturnsAsync((Patient?)null);
 
             var result = await _service.GetPatientByIdAsync(999);
 
@@ -76,7 +76,7 @@ namespace Mls.Patient.Api.Tests.Services
 
             var result = await _service.CreatePatientAsync(dto);
 
-            _repositoryMock.Verify(r => r.AddAsync(It.Is<Models.Patient>(p => p.Nom == "Doe" && p.Prenom == "John")), Times.Once);
+            _repositoryMock.Verify(r => r.AddAsync(It.Is<Patient>(p => p.Nom == "Doe" && p.Prenom == "John")), Times.Once);
             _repositoryMock.Verify(r => r.SaveChangesAsync(), Times.Once);
 
             Assert.AreEqual("Doe", result.Nom);
@@ -98,7 +98,7 @@ namespace Mls.Patient.Api.Tests.Services
 
             var result = await _service.UpdatePatientAsync(1, dto);
 
-            _repositoryMock.Verify(r => r.Update(It.Is<Models.Patient>(p => p.Id == 1 && p.Nom == "Doe")), Times.Once);
+            _repositoryMock.Verify(r => r.Update(It.Is<Patient>(p => p.Id == 1 && p.Nom == "Doe")), Times.Once);
             Assert.IsTrue(result);
         }
 

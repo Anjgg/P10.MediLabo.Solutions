@@ -1,9 +1,8 @@
-﻿using Mls.Patient.Api.Models;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Mls.Patient.Api.DTOs
+namespace Mls.Patients.Api.Models
 {
-    public class PatientDto
+    public class Patient
     {
         public int Id { get; set; }
 
@@ -26,5 +25,11 @@ namespace Mls.Patient.Api.DTOs
 
         [MaxLength(20)]
         public string? Telephone { get; set; }
+    }
+
+    public enum Genre
+    {
+        M = 0,
+        F = 1
     }
 }

@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Mls.Patient.Api.Data;
+using Mls.Patients.Api.Data;
 
 #nullable disable
 
-namespace Mls.Patient.Api.Migrations
+namespace Mls.Patients.Api.Migrations
 {
     [DbContext(typeof(PatientDbContext))]
-    [Migration("20260708141234_UpdateDateNaissanceToDateOnly")]
-    partial class UpdateDateNaissanceToDateOnly
+    [Migration("20260708074313_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,8 +37,8 @@ namespace Mls.Patient.Api.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<DateOnly>("DateNaissance")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("DateNaissance")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Genre")
                         .IsRequired()
@@ -62,48 +62,6 @@ namespace Mls.Patient.Api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Patients", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Adresse = "1 Brookside St",
-                            DateNaissance = new DateOnly(1966, 12, 31),
-                            Genre = "F",
-                            Nom = "TestNone",
-                            Prenom = "Test",
-                            Telephone = "100-222-3333"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Adresse = "2 High St",
-                            DateNaissance = new DateOnly(1945, 6, 24),
-                            Genre = "M",
-                            Nom = "TestBorderline",
-                            Prenom = "Test",
-                            Telephone = "200-333-4444"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Adresse = "3 Club Road",
-                            DateNaissance = new DateOnly(2004, 6, 18),
-                            Genre = "M",
-                            Nom = "TestInDanger",
-                            Prenom = "Test",
-                            Telephone = "300-444-5555"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Adresse = "4 Valley Dr",
-                            DateNaissance = new DateOnly(2002, 6, 28),
-                            Genre = "F",
-                            Nom = "TestEarlyOnse",
-                            Prenom = "Test",
-                            Telephone = "400-555-6666"
-                        });
                 });
 #pragma warning restore 612, 618
         }

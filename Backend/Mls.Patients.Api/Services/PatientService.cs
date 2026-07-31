@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Mls.Patient.Api.DTOs;
 using Mls.Library.Repositories;
-using Mls.Patient.Api.Models;
+using Mls.Patients.Api.DTOs;
+using Mls.Patients.Api.Models;
 
-namespace Mls.Patient.Api.Services
+namespace Mls.Patients.Api.Services
 {
     public interface IPatientService
     {
@@ -15,9 +15,9 @@ namespace Mls.Patient.Api.Services
 
     public class PatientService : IPatientService
     {
-        private readonly IRepository<Models.Patient> _repository;
+        private readonly IRepository<Patient> _repository;
 
-        public PatientService(IRepository<Models.Patient> repository)
+        public PatientService(IRepository<Patient> repository)
         {
             _repository = repository;
         }
@@ -37,7 +37,7 @@ namespace Mls.Patient.Api.Services
 
         public async Task<PatientDto> CreatePatientAsync(PatientDto dto)
         {
-            var patient = new Models.Patient
+            var patient = new Patient
             {
                 Nom = dto.Nom,
                 Prenom = dto.Prenom,
@@ -55,7 +55,7 @@ namespace Mls.Patient.Api.Services
 
         public async Task<bool> UpdatePatientAsync(int id, PatientDto dto)
         {
-            var patient = new Models.Patient
+            var patient = new Patient
             {
                 Id = id,
                 Nom = dto.Nom,
@@ -80,7 +80,7 @@ namespace Mls.Patient.Api.Services
             return true;
         }
 
-        private static PatientDto ToDto(Models.Patient patient)
+        private static PatientDto ToDto(Patient patient)
         {
             return new PatientDto
             {

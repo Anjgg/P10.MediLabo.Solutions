@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
-using Mls.Patient.Api.Controllers;
-using Mls.Patient.Api.DTOs;
-using Mls.Patient.Api.Models;
-using Mls.Patient.Api.Services;
+using Mls.Patients.Api.Controllers;
+using Mls.Patients.Api.DTOs;
+using Mls.Patients.Api.Models;
+using Mls.Patients.Api.Services;
 using Moq;
 
-namespace Mls.Patient.Api.Tests.Controllers
+namespace Mls.Patients.Api.Tests.Controllers
 {
     [TestClass]
     public class PatientControllerTests
