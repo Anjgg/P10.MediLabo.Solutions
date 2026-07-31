@@ -55,7 +55,7 @@ namespace Mls.Patients.Api.Controllers
                 return NoContent();
             }
 
-            return BadRequest();
+            return NotFound();
         }
     }
 }
