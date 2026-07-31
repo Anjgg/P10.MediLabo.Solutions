@@ -20,6 +20,15 @@
     <dd class="col-sm-9">@(Model.Patient.Telephone ?? "-")</dd>
 </dl>
 
+@if (Model.Assessment != null)
+{
+    <p>
+        <strong>Niveau de risque : </strong>
+        <span class="badge bg-info">@Model.Assessment.Assessment</span>
+    </p>
+}
+
+
 <a asp-action="Edit" asp-route-id="@Model.Patient.Id" class="btn btn-primary">Modifier</a>
 <a asp-action="Index" class="btn btn-secondary">Retour à la liste</a>
 

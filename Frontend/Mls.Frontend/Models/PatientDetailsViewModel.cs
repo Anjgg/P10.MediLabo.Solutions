@@ -1,3 +1,4 @@
+using Mls.Frontend.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace Frontend.Models
@@ -11,5 +12,7 @@ namespace Frontend.Models
         [Required(ErrorMessage = "La note ne peut pas être vide.")]
         [Display(Name = "Nouvelle note")]
         public string NouvelleNote { get; set; } = string.Empty;
+
+        public AssessmentViewModel? Assessment { get; set; }
     }
 }
