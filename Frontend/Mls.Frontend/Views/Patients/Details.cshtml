@@ -1,0 +1,24 @@
+@model Frontend.Models.PatientViewModel
+
+@{
+    ViewData["Title"] = "Détail du patient";
+}
+
+<h1>@Model.Prenom @Model.Nom</h1>
+
+<dl class="row">
+    <dt class="col-sm-3">Date de naissance</dt>
+    <dd class="col-sm-9">@Model.DateNaissance?.ToString("dd/MM/yyyy")</dd>
+
+    <dt class="col-sm-3">Genre</dt>
+    <dd class="col-sm-9">@Model.Genre</dd>
+
+    <dt class="col-sm-3">Adresse</dt>
+    <dd class="col-sm-9">@(Model.Adresse ?? "-")</dd>
+
+    <dt class="col-sm-3">Téléphone</dt>
+    <dd class="col-sm-9">@(Model.Telephone ?? "-")</dd>
+</dl>
+
+<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Modifier</a>
+<a asp-action="Index" class="btn btn-secondary">Retour à la liste</a>

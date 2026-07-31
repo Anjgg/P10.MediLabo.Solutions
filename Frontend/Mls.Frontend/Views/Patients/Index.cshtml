@@ -1,0 +1,38 @@
+@model List<Frontend.Models.PatientViewModel>
+
+@{
+    ViewData["Title"] = "Patients";
+}
+
+<h1>Patients</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Ajouter un patient</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Date de naissance</th>
+            <th>Genre</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var patient in Model)
+        {
+            <tr>
+                <td>@patient.Nom</td>
+                <td>@patient.Prenom</td>
+                <td>@patient.DateNaissance?.ToString("dd/MM/yyyy")</td>
+                <td>@patient.Genre</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@patient.Id" class="btn btn-sm btn-outline-secondary">Détails</a>
+                    <a asp-action="Edit" asp-route-id="@patient.Id" class="btn btn-sm btn-outline-secondary">Modifier</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

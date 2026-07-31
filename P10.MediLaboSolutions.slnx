@@ -1,17 +1,20 @@
 <Solution>
-  <Folder Name="/Back/">
-    <Project Path="Patient.API/Patient.API.csproj" Id="12ae7a77-5c06-4a7c-a380-8229c76f7b68" />
+  <Folder Name="/Backend/">
+    <Project Path="Backend/Mls.Patients.Api/Mls.Patients.Api.csproj" Id="12ae7a77-5c06-4a7c-a380-8229c76f7b68" />
   </Folder>
-  <Folder Name="/Front/">
-    <Project Path="Frontend/Frontend.csproj" Id="3c98485d-62cd-4f41-9ac7-f3fa38aa27d4" />
+  <Folder Name="/Frontend/">
+    <Project Path="Frontend/Mls.Frontend/Mls.Frontend.csproj" Id="3c98485d-62cd-4f41-9ac7-f3fa38aa27d4" />
   </Folder>
-  <Folder Name="/Routing/">
-    <Project Path="Gateway/Gateway.csproj" Id="b38152c4-ae8b-4cce-bab1-958a8df4741d" />
+  <Folder Name="/Gateway/">
+    <Project Path="Gateway/Mls.Gateway/Mls.Gateway.csproj" Id="b38152c4-ae8b-4cce-bab1-958a8df4741d" />
   </Folder>
   <Folder Name="/UnitTests/">
-    <Project Path="Patient.API.Tests/Patient.API.Tests.csproj" Id="0074bd36-c304-453e-b097-202c34aaeba9" />
+    <Project Path="UnitTests/Mls.Patients.Api.Tests/Mls.Patients.Api.Tests.csproj" Id="0074bd36-c304-453e-b097-202c34aaeba9" />
   </Folder>
   <Folder Name="/_build/">
-    <File Path="docker-compose.yml" />
+    <File Path="_build/docker-compose.yml" />
+  </Folder>
+  <Folder Name="/_Libraries/">
+    <Project Path="_Libraries/Mls.Library/Mls.Library.csproj" Id="903773db-7373-419c-b6fb-104d28eba73c" />
   </Folder>
 </Solution>
