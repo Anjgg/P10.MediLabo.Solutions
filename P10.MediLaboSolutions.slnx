@@ -13,6 +13,7 @@
   <Folder Name="/UnitTests/">
     <Project Path="UnitTests/Mls.Patients.Api.Tests/Mls.Patients.Api.Tests.csproj" Id="0074bd36-c304-453e-b097-202c34aaeba9" />
     <Project Path="UnitTests/Mls.Notes.Api.Tests/Mls.Notes.Api.Tests.csproj" Id="a2d8c5e1-6f4b-4a9d-8e2c-1b3f5a7d9c40" />
+    <Project Path="UnitTests/Mls.Assessment.Api.Tests/Mls.Assessment.Api.Tests.csproj" Id="d7e4b8a3-5c9f-4a1e-9d6b-3f8a2c7e5b91" />
   </Folder>
   <Folder Name="/_build/">
     <File Path="_build/docker-compose.yml" />

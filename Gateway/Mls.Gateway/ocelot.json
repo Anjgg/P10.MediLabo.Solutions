@@ -44,6 +44,15 @@
       ],
       "UpstreamPathTemplate": "/api/notes/{id}",
       "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/assessment/{patientId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        { "Host": "localhost", "Port": 5048 }
+      ],
+      "UpstreamPathTemplate": "/api/assessment/{patientId}",
+      "UpstreamHttpMethod": [ "GET" ]
     }
   ],
   "GlobalConfiguration": {
