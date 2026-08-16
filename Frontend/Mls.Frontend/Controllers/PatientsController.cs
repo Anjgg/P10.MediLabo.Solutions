@@ -8,11 +8,13 @@ namespace Frontend.Controllers
     {
         private readonly IPatientApiClient _apiClient;
         private readonly INotesApiClient _notesApiClient;
+        private readonly IAssessmentApiClient _assessmentApiClient;
 
-        public PatientsController(IPatientApiClient apiClient, INotesApiClient notesApiClient)
+        public PatientsController(IPatientApiClient apiClient, INotesApiClient notesApiClient, IAssessmentApiClient assessmentApiClient)
         {
             _apiClient = apiClient;
             _notesApiClient = notesApiClient;
+            _assessmentApiClient = assessmentApiClient;
         }
 
         public async Task<IActionResult> Index()
@@ -32,10 +34,13 @@ namespace Frontend.Controllers
 
             var notes = await _notesApiClient.GetNotesByPatientAsync(id);
 
+            var assessment = await _assessmentApiClient.GetAssessmentAsync(id);
+
             var viewModel = new PatientDetailsViewModel
             {
                 Patient = patient,
-                Notes = notes
+                Notes = notes,
+                Assessment = assessment
             };
 
             return View(viewModel);
